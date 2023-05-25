@@ -1,10 +1,10 @@
 // * VARIABLES
-
 const formulario = document.querySelector('#cotizar-seguro');
 const selectYear = document.querySelector('#year');
 
-// * CONSTRUCTORES
 
+
+// * CONSTRUCTORES
 function Seguro(marca, year, tipo) {
   this.marca = marca;
   this.year = year;
@@ -29,12 +29,29 @@ UI.prototype.llenarSelectYear = () => {
 
 const ui = new UI();
 
-// * EVENTOS
 
+
+// * EVENTOS
 document.addEventListener('DOMContentLoaded', () => {
   ui.llenarSelectYear();
+  formulario.addEventListener('submit', cotizarSeguro);
 });
 
+
+
 // * FUNCIONES
+// Cotiza el seguro
+const cotizarSeguro = (event) => {
+  event.preventDefault();
+
+  const marca = document.querySelector('#marca').value;
+  const year = document.querySelector('#year').value;
+  const tipo = document.querySelector('input[name="tipo"]:checked').value;
+
+  if ([marca, year, tipo].includes('')) {
+
+  }
+
+};
 
 

@@ -27,8 +27,21 @@ UI.prototype.llenarSelectYear = () => {
   }
 };
 
-const ui = new UI();
+// Muestra un mensaje en pantalla
+UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
 
+  ui.eliminarMensaje();
+
+  const div = document.createElement('DIV');
+  div.textContent = mensaje;
+  div.classList.add('mensaje', 'mt-10');
+
+  (exito)
+    ? div.classList.add('correcto')
+    : div.classList.add('error');
+
+  formulario.insertBefore(div, document.querySelector('#resultado'));
+};
 
 
 // * EVENTOS
@@ -49,7 +62,8 @@ const cotizarSeguro = (event) => {
   const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
   if ([marca, year, tipo].includes('')) {
-
+    ui.mostrarMensaje('Todos los campos son obligatorios', false);
+    return;
   }
 
 };

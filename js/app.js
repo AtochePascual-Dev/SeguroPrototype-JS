@@ -11,6 +11,7 @@ function Seguro(marca, year, tipo) {
   this.year = year;
   this.tipo = tipo;
 };
+function UI() { };
 
 // Realiza la cotizacion
 Seguro.prototype.cotizar = function () {
@@ -40,7 +41,9 @@ Seguro.prototype.cotizar = function () {
 
   return cantidad;
 };
-function UI() { };
+
+
+
 
 // Genera los años y los agregar en el select de year
 UI.prototype.llenarSelectYear = () => {
@@ -55,6 +58,8 @@ UI.prototype.llenarSelectYear = () => {
     selectYear.appendChild(optionYear);
   }
 };
+
+
 
 // Muestra un mensaje en pantalla
 UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
@@ -72,6 +77,8 @@ UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
   formulario.insertBefore(div, document.querySelector('#resultado'));
 };
 
+
+
 // Elimina un mensaje en caso de  existir
 UI.prototype.eliminarMensaje = () => {
   const existeMensaje = document.querySelector('.mensaje');
@@ -80,8 +87,13 @@ UI.prototype.eliminarMensaje = () => {
 
 };
 
+
+
 // Muestra el resultado en pantalla
 UI.prototype.mostrarResultado = (seguro, total) => {
+
+  ui.eliminarResultado();
+
   const resultadoDiv = document.querySelector('#resultado');
   const div = document.createElement('DIV');
 
@@ -104,7 +116,15 @@ UI.prototype.mostrarResultado = (seguro, total) => {
     // Mostramos el resultado
     resultadoDiv.appendChild(div);
   }, 1000);
+};
 
+
+
+// Elimina un resultdo previo en caso de existir
+UI.prototype.eliminarResultado = () => {
+  const existeResultado = document.querySelector('.resultado');
+
+  if (existeResultado) existeResultado.remove();
 };
 
 const ui = new UI();

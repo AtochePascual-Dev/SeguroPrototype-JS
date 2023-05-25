@@ -13,7 +13,7 @@ function Seguro(marca, year, tipo) {
 };
 function UI() { };
 
-// Realiza la cotizacion
+//* Realiza la cotizacion
 Seguro.prototype.cotizar = function () {
   let cantidad;
   const base = 2000;
@@ -45,7 +45,7 @@ Seguro.prototype.cotizar = function () {
 
 
 
-// Genera los años y los agregar en el select de year
+//* Genera los años y los agregar en el select de year
 UI.prototype.llenarSelectYear = () => {
   const maxYear = new Date().getFullYear();
   const minYear = maxYear - 15;
@@ -61,7 +61,7 @@ UI.prototype.llenarSelectYear = () => {
 
 
 
-// Muestra un mensaje en pantalla
+//* Muestra un mensaje en pantalla
 UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
 
   ui.eliminarMensaje();
@@ -79,7 +79,7 @@ UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
 
 
 
-// Elimina un mensaje en caso de  existir
+//* Elimina un mensaje en caso de  existir
 UI.prototype.eliminarMensaje = () => {
   const existeMensaje = document.querySelector('.mensaje');
 
@@ -89,7 +89,7 @@ UI.prototype.eliminarMensaje = () => {
 
 
 
-// Muestra el resultado en pantalla
+//* Muestra el resultado en pantalla
 UI.prototype.mostrarResultado = (seguro, total) => {
   const { marca, year, tipo } = seguro;
   const resultadoDiv = document.querySelector('#resultado');
@@ -127,7 +127,7 @@ UI.prototype.mostrarResultado = (seguro, total) => {
 
 
 
-// Elimina un resultdo previo en caso de existir
+//* Elimina un resultdo previo en caso de existir
 UI.prototype.eliminarResultado = () => {
   const existeResultado = document.querySelector('.resultado');
 
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // * FUNCIONES
-// Cotiza el seguro
+//* Cotiza el seguro
 const cotizarSeguro = (event) => {
   event.preventDefault();
 

@@ -1,6 +1,7 @@
 // * VARIABLES
 const formulario = document.querySelector('#cotizar-seguro');
 const selectYear = document.querySelector('#year');
+const spinner = document.querySelector('#cargando');
 
 
 
@@ -78,6 +79,34 @@ UI.prototype.eliminarMensaje = () => {
   if (existeMensaje) existeMensaje.remove();
 
 };
+
+// Muestra el resultado en pantalla
+UI.prototype.mostrarResultado = (seguro, total) => {
+  const resultadoDiv = document.querySelector('#resultado');
+  const div = document.createElement('DIV');
+
+  div.classList.add('mt-10', 'resultado');
+  div.innerHTML = `
+  <p class="header">Tu Resumen</p>
+  <p class="font-bold">Total : ${total}</p>
+  `;
+
+  // Mostramos el spinner
+  spinner.style.display = "block";
+
+  setTimeout(() => {
+    // Desactivamos el spinner
+    spinner.style.display = "none";
+
+    // Eliminamos el mensaje de aterta
+    ui.eliminarMensaje();
+
+    // Mostramos el resultado
+    resultadoDiv.appendChild(div);
+  }, 1000);
+
+};
+
 const ui = new UI();
 
 
@@ -109,6 +138,9 @@ const cotizarSeguro = (event) => {
   // Instanciamos un seguro
   const seguro = new Seguro(marca, year, tipo);
   const total = seguro.cotizar();
+
+  // Mostramos el resultado
+  ui.mostrarResultado(seguro, total);
 };
 
 

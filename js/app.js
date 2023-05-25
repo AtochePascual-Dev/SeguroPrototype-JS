@@ -11,6 +11,34 @@ function Seguro(marca, year, tipo) {
   this.tipo = tipo;
 };
 
+// Realiza la cotizacion
+Seguro.prototype.cotizar = function () {
+  let cantidad;
+  const base = 2000;
+  const segunMarca = {
+    1: function () { cantidad = base * 1.15 },
+    2: function () { cantidad = base * 1.05 },
+    3: function () { cantidad = base * 1.35 },
+  };
+  const segunTpo = {
+    basico: function () { cantidad *= 1.30 },
+    completo: function () { cantidad *= 1.50 },
+  };
+
+  // Dependiendo del tipo de maca seleccionada agreamos un % de la base a la cantidad
+  segunMarca[this.marca]();
+
+  // Entre el año seleccionado y el año actual existe una diferencia, por cada año de diferencia agregamos un 3% de la cantidad a cantidad
+  const yearActual = new Date().getFullYear();
+  const diferencia = yearActual - this.year;
+
+  cantidad -= ((diferencia * 3) * cantidad) / 100;
+
+  // Segun el tipo selecionado incrementamos la cantidad
+  segunTpo[this.tipo]();
+
+  return cantidad;
+};
 function UI() { };
 
 // Genera los años y los agregar en el select de year
@@ -77,6 +105,10 @@ const cotizarSeguro = (event) => {
   }
   // Si pasa la validacion eliminamos y mostrmos otro mensaje
   ui.mostrarMensaje('Cotizando...');
+
+  // Instanciamos un seguro
+  const seguro = new Seguro(marca, year, tipo);
+  const total = seguro.cotizar();
 };
 
 

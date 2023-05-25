@@ -91,16 +91,23 @@ UI.prototype.eliminarMensaje = () => {
 
 // Muestra el resultado en pantalla
 UI.prototype.mostrarResultado = (seguro, total) => {
-
-  ui.eliminarResultado();
-
+  const { marca, year, tipo } = seguro;
   const resultadoDiv = document.querySelector('#resultado');
   const div = document.createElement('DIV');
+  const marcaTexto = {
+    1: 'Americano',
+    2: 'Asiatico',
+    3: 'Europeo',
+  }
+  ui.eliminarResultado();
 
   div.classList.add('mt-10', 'resultado');
   div.innerHTML = `
   <p class="header">Tu Resumen</p>
-  <p class="font-bold">Total : ${total}</p>
+  <p class="font-bold">Marca : <span class="font-normal">${marcaTexto[marca]}</span></p>
+  <p class="font-bold">Año : <span class="font-normal">${year}</span></p>
+  <p class="font-bold">Tipo : <span class="font-normal">${tipo}</span></p>
+  <p class="font-bold">Total : <span class="font-normal">$${total}</span></p>
   `;
 
   // Mostramos el spinner

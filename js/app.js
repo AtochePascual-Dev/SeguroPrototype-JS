@@ -43,6 +43,16 @@ UI.prototype.mostrarMensaje = (mensaje, exito = true) => {
   formulario.insertBefore(div, document.querySelector('#resultado'));
 };
 
+// Elimina un mensaje en caso de  existir
+UI.prototype.eliminarMensaje = () => {
+  const existeMensaje = document.querySelector('.mensaje');
+
+  if (existeMensaje) existeMensaje.remove();
+
+};
+const ui = new UI();
+
+
 
 // * EVENTOS
 document.addEventListener('DOMContentLoaded', () => {
@@ -65,7 +75,8 @@ const cotizarSeguro = (event) => {
     ui.mostrarMensaje('Todos los campos son obligatorios', false);
     return;
   }
-
+  // Si pasa la validacion eliminamos y mostrmos otro mensaje
+  ui.mostrarMensaje('Cotizando...');
 };
 
 
